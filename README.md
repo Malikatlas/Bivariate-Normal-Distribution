@@ -10,19 +10,23 @@ This project analyzes the **joint distribution** of Math and Physics scores usin
 
 Given:
 
-- \( \mu_{\text{Math}} = 70 \)
-- \( \mu_{\text{Physics}} = 75 \)
-- \( \sigma_{\text{Math}} = 10 \)
-- \( \sigma_{\text{Physics}} = 12 \)
-- \( \rho = 0.7 \)
+mu_Math = 70
+mu_Physics = 75
+sigma_Math = 10
+sigma_Physics = 12
+rho = 0.7 (correlation coefficient between Math and Physics scores)
 
 Tasks:
 
-1. **Joint PDF** of the bivariate normal distribution
-2. \( P(\text{Math} > 80 \ \text{and} \ \text{Physics} > 80) \)
-3. \( \mathbb{E}[\text{Physics} \mid \text{Math} = 80] \) and conditional variance
-4. \( P(\text{Physics} > 85 \mid \text{Math} = 80) \)
-5. Estimated number of students scoring >90 in Physics out of 200
+Write the joint probability density function (PDF) of the bivariate normal distribution for Math and Physics scores.
+Calculate the probability that a student scores more than 80 in both Math and Physics:
+P(Math > 80 and Physics > 80)
+If a student scores 80 in Math, compute:
+The expected Physics score (E[Physics | Math = 80])
+The conditional variance of Physics given Math
+Find the probability that a student scoring 80 in Math scores more than 85 in Physics:
+P(Physics > 85 | Math = 80)
+If 200 students are surveyed, estimate how many are expected to score more than 90 in Physics.
 
 ---
 
@@ -38,24 +42,22 @@ Simulate 10,000 student scores and calculate:
 
 ### 🧮 Mathematical Highlights
 
-- **Conditional Expectation:**
-  \[
-  \mathbb{E}[Y \mid X = x] = \mu_Y + \rho \frac{\sigma_Y}{\sigma_X}(x - \mu_X)
-  \]
+
+**Conditional Expectation:**  
+E[Y | X = x] = mu_Y + rho * (sigma_Y / sigma_X) * (x - mu_X)
+
 
 - **Conditional Variance:**
-  \[
-  \text{Var}(Y \mid X) = \sigma_Y^2(1 - \rho^2)
-  \]
+Var(Y | X) = sigma_Y^2 * (1 - rho^2)
 
-- **Joint PDF (2D Gaussian):**
-  \[
-  f(x, y) = \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1 - \rho^2}} \exp\left(-\frac{1}{2(1 - \rho^2)} Q \right)
-  \]
-  where  
-  \[
-  Q = \left(\frac{x - \mu_X}{\sigma_X}\right)^2 - 2\rho\left(\frac{x - \mu_X}{\sigma_X}\right)\left(\frac{y - \mu_Y}{\sigma_Y}\right) + \left(\frac{y - \mu_Y}{\sigma_Y}\right)^2
-  \]
+f(x, y) = [1 / (2 * pi * sigma_X * sigma_Y * sqrt(1 - rho^2))] 
+         * exp{ -1 / [2 * (1 - rho^2)] * Q }
+
+where:
+Q = ((x - mu_X) / sigma_X)^2 
+    - 2 * rho * ((x - mu_X) / sigma_X) * ((y - mu_Y) / sigma_Y) 
+    + ((y - mu_Y) / sigma_Y)^2
+
 
 ---
 
